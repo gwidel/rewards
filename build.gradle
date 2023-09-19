@@ -1,0 +1,63 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.13'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+	id 'com.adarshr.test-logger' version '3.2.0'
+}
+
+group = 'com.gwtech'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '11'
+	targetCompatibility = '11'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springdoc:springdoc-openapi-ui:1.6.11'
+	compileOnly 'org.projectlombok:lombok:1.18.28'
+	annotationProcessor 'org.projectlombok:lombok:1.18.28'
+
+	implementation "com.fasterxml.jackson.core:jackson-core:2.15.2"
+	implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.2"
+	implementation "com.fasterxml.jackson.core:jackson-annotations:2.15.2"
+	implementation "com.fasterxml.jackson.core:jackson-databind:2.15.2"
+	implementation "com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.15.2"
+
+	
+	runtimeOnly('com.h2database:h2')
+	
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.apache.commons:commons-lang3:3.12.0'
+}
+
+test {
+	useJUnitPlatform()
+}
+
+testlogger {
+	theme 'standard'
+	showExceptions true
+	showStackTraces true
+	showFullStackTraces false
+	showCauses true
+	slowThreshold 2000
+	showSummary true
+	showSimpleNames false
+	showPassed true
+	showSkipped true
+	showFailed true
+	showOnlySlow false
+	showStandardStreams false
+	showPassedStandardStreams true
+	showSkippedStandardStreams true
+	showFailedStandardStreams true
+	logLevel 'lifecycle'
+}
