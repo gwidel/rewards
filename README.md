@@ -19,6 +19,7 @@ If there is significant number of them - we might need to add some pagination to
 * Report is done for last three months (included current month but it can be changed with property `should.include.current.month.in.report`). Code needs to be refactored is we need some particular, specified date range. 
 
 ### Build & Run
+* java 17, spring-boot 3.1 supported
 * Data (customers and transactions) are stored in H2 database that is started and schema created during startup
 * To run tests: `./gradlew check`
 * To run application: `./gradlew bootRun`
