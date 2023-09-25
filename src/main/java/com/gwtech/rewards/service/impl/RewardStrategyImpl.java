@@ -20,13 +20,13 @@ public class RewardStrategyImpl implements RewardStrategy {
 		if (transaction.getPurchaseValue().compareTo(FIRST_REWARD_LIMIT) > 0
 			&& transaction.getPurchaseValue().compareTo(SECOND_REWARD_LIMIT) <= 0) {
 
-			return transaction.getPurchaseValue().subtract(FIRST_REWARD_LIMIT).setScale(0, RoundingMode.UP).longValue();
+			return transaction.getPurchaseValue().subtract(FIRST_REWARD_LIMIT).setScale(0, RoundingMode.DOWN).longValue();
 			
 		} else if (transaction.getPurchaseValue().compareTo(SECOND_REWARD_LIMIT) > 0) {
 			
-			return transaction.getPurchaseValue().subtract(SECOND_REWARD_LIMIT).setScale(0, RoundingMode.UP)
+			return transaction.getPurchaseValue().subtract(SECOND_REWARD_LIMIT).setScale(0, RoundingMode.DOWN)
 					.multiply(SECOND_REWARD_MILTIPLIER)
-					.add(SECOND_REWARD_LIMIT.subtract(FIRST_REWARD_LIMIT)).setScale(0, RoundingMode.UP).longValue();
+					.add(SECOND_REWARD_LIMIT.subtract(FIRST_REWARD_LIMIT)).setScale(0, RoundingMode.DOWN).longValue();
 		} else
 			return 0L;
 	}

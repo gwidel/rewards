@@ -30,16 +30,32 @@ public class RewardStrategyTests {
 
     static Stream<Arguments> provideTransactions() {
         return Stream.of(
-                Arguments.of(Transaction.builder().purchaseValue(BigDecimal.valueOf(120.00)).build(), 90L),
+                Arguments.of(Transaction.builder().purchaseValue(BigDecimal.valueOf(10.00)).build(), 0L),
+                Arguments.of(Transaction.builder().purchaseValue(BigDecimal.valueOf(49.99)).build(), 0L),
                 Arguments.of(Transaction.builder().purchaseValue(BigDecimal.valueOf(50.00)).build(), 0L),
-                Arguments.of(Transaction.builder().purchaseValue(BigDecimal.valueOf(50.01)).build(), 1L),
-                Arguments.of(Transaction.builder().purchaseValue(BigDecimal.valueOf(51.01)).build(), 2L),
-                Arguments.of(Transaction.builder().purchaseValue(BigDecimal.valueOf(99.99)).build(), 50L),
+                Arguments.of(Transaction.builder().purchaseValue(BigDecimal.valueOf(50.01)).build(), 0L),
+
+                Arguments.of(Transaction.builder().purchaseValue(BigDecimal.valueOf(51.01)).build(), 1L),
+                Arguments.of(Transaction.builder().purchaseValue(BigDecimal.valueOf(51.49)).build(), 1L),
+                Arguments.of(Transaction.builder().purchaseValue(BigDecimal.valueOf(51.50)).build(), 1L),
+                Arguments.of(Transaction.builder().purchaseValue(BigDecimal.valueOf(51.51)).build(), 1L),
+                Arguments.of(Transaction.builder().purchaseValue(BigDecimal.valueOf(51.99)).build(), 1L),
+                
+                Arguments.of(Transaction.builder().purchaseValue(BigDecimal.valueOf(99.99)).build(), 49L),
+
                 Arguments.of(Transaction.builder().purchaseValue(BigDecimal.valueOf(100.00)).build(), 50L),
-                Arguments.of(Transaction.builder().purchaseValue(BigDecimal.valueOf(100.01)).build(), 52L),
-                Arguments.of(Transaction.builder().purchaseValue(BigDecimal.valueOf(100.10)).build(), 52L),
+                Arguments.of(Transaction.builder().purchaseValue(BigDecimal.valueOf(100.01)).build(), 50L),
+                Arguments.of(Transaction.builder().purchaseValue(BigDecimal.valueOf(100.10)).build(), 50L),
+                Arguments.of(Transaction.builder().purchaseValue(BigDecimal.valueOf(100.50)).build(), 50L),
+                Arguments.of(Transaction.builder().purchaseValue(BigDecimal.valueOf(100.99)).build(), 50L),
+
                 Arguments.of(Transaction.builder().purchaseValue(BigDecimal.valueOf(101.00)).build(), 52L),
-                Arguments.of(Transaction.builder().purchaseValue(BigDecimal.valueOf(120.00)).build(), 90L)
+                Arguments.of(Transaction.builder().purchaseValue(BigDecimal.valueOf(101.15)).build(), 52L),
+                Arguments.of(Transaction.builder().purchaseValue(BigDecimal.valueOf(101.50)).build(), 52L),
+                Arguments.of(Transaction.builder().purchaseValue(BigDecimal.valueOf(101.99)).build(), 52L),
+
+                Arguments.of(Transaction.builder().purchaseValue(BigDecimal.valueOf(120.00)).build(), 90L),
+                Arguments.of(Transaction.builder().purchaseValue(BigDecimal.valueOf(120.50)).build(), 90L)
         );
     }
 }

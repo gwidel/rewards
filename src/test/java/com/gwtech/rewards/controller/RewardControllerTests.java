@@ -1,10 +1,8 @@
 package com.gwtech.rewards.controller;
 
-import com.gwtech.rewards.TestObjectsFactory;
 import com.gwtech.rewards.model.Customer;
 import com.gwtech.rewards.model.Transaction;
 import com.gwtech.rewards.repository.CustomerRepository;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +15,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.time.Month;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,12 +58,12 @@ public class RewardControllerTests {
                         .andExpect(jsonPath("$[0].rewards").isArray())
                         .andExpect(jsonPath("$[0].rewards", hasSize(3)))
                         .andExpect(jsonPath("$[0].rewards[0].yearMonth").value(YearMonth.from(now.minusMonths(2)).toString()))
-                        .andExpect(jsonPath("$[0].rewards[0].rewardValue").value(1))
+                        .andExpect(jsonPath("$[0].rewards[0].rewardValue").value(0))
                         .andExpect(jsonPath("$[0].rewards[1].yearMonth").value(YearMonth.from(now.minusMonths(1)).toString()))
-                        .andExpect(jsonPath("$[0].rewards[1].rewardValue").value(52))
+                        .andExpect(jsonPath("$[0].rewards[1].rewardValue").value(50))
                         .andExpect(jsonPath("$[0].rewards[2].yearMonth").value(YearMonth.from(now).toString()))
                         .andExpect(jsonPath("$[0].rewards[2].rewardValue").value(90))
-                        .andExpect(jsonPath("$[0].totalRewardValue").value(143));
+                        .andExpect(jsonPath("$[0].totalRewardValue").value(140));
     }
 
 
